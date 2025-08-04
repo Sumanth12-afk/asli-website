@@ -83,17 +83,17 @@ const ContactSection = () => {
                 key={index}
                 className="bg-gradient-to-b from-clay-red/30 to-background-deep/50 backdrop-blur-sm rounded-3xl p-8 border border-antique-gold/30 asli-gold-glow hover:border-antique-gold/50 transition-all duration-300"
               >
-                <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-antique-gold to-yellow-400 rounded-2xl flex items-center justify-center text-background-deep flex-shrink-0 asli-gold-glow">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                  <div className="w-16 h-16 sm:w-16 sm:h-16 bg-gradient-to-br from-antique-gold to-yellow-400 rounded-2xl flex items-center justify-center text-background-deep flex-shrink-0 asli-gold-glow">
                     {info.icon}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-serif text-2xl font-semibold text-text-light mb-4">
+                  <div className="flex-1 text-center sm:text-left">
+                    <h3 className="font-serif text-xl sm:text-2xl font-semibold text-text-light mb-3 sm:mb-4">
                       {info.title}
                     </h3>
-                    <div className="space-y-2">
+                    <div className="space-y-1 sm:space-y-2">
                       {info.details.map((detail, detailIndex) => (
-                        <p key={detailIndex} className="text-muted-ivory text-lg leading-calm tracking-relaxed">
+                        <p key={detailIndex} className="text-muted-ivory text-base sm:text-lg leading-calm tracking-relaxed break-words">
                           {detail}
                         </p>
                       ))}
