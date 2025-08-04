@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global styles for elegant Asli restaurant */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-text-light bg-background-deep asli-elegant;
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+  
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Asli Brand Components */
+  .asli-elegant {
+    letter-spacing: 0.025em;
+    line-height: 1.7;
+  }
+
+  .asli-text-glow {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .asli-clay-overlay {
+    background: rgba(147, 63, 47, 0.6);
+  }
+
+  .asli-gold-glow {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  }
+
+  .asli-texture-bg {
+    background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  .asli-fade-in {
+    animation: asli-fadeIn 1.2s ease-out;
+  }
+
+  .asli-slide-up {
+    animation: asli-slideUp 1s ease-out;
+  }
+
+  /* Enhanced Button Styles */
+  .asli-btn-primary {
+    @apply bg-clay-red text-text-light border-2 border-antique-gold px-8 py-3 rounded-full font-sans font-medium tracking-relaxed transition-all duration-300 asli-gold-glow;
+  }
+
+  .asli-btn-primary:hover {
+    @apply bg-antique-gold text-clay-red transform scale-105;
+  }
+
+  .asli-btn-secondary {
+    @apply bg-transparent text-antique-gold border-2 border-antique-gold px-8 py-3 rounded-full font-sans font-medium tracking-relaxed transition-all duration-300;
+  }
+
+  .asli-btn-secondary:hover {
+    @apply bg-antique-gold text-background-deep transform scale-105;
+  }
+
+  /* Updated Legacy Styles */
+  .glass-effect {
+    background: rgba(249, 243, 234, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+  }
+  
+  .gold-gradient {
+    background: linear-gradient(135deg, #d4af37 0%, #f7e98e 50%, #d4af37 100%);
+  }
+  
+  .text-shadow-gold {
+    text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
+  }
+  
+  .btn-primary {
+    @apply bg-clay-red text-text-light px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-antique-gold hover:text-clay-red hover:scale-105 hover:shadow-lg border-2 border-antique-gold;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-antique-gold text-antique-gold px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-antique-gold hover:text-background-deep hover:scale-105;
+  }
+  
+  .section-container {
+    @apply min-h-screen flex items-center justify-center p-8;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-500 hover:scale-105 hover:shadow-2xl;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .cursor-zoom-in {
+    cursor: zoom-in;
+  }
+  
+  .cursor-zoom-out {
+    cursor: zoom-out;
+  }
+}
+
+/* Asli Custom Animations */
+@keyframes asli-fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes asli-slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+  background-size: 468px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Parallax and 3D effects */
+.parallax-container {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .section-container {
+    @apply p-4;
+  }
+}
