@@ -2,103 +2,349 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Google Fonts Import - Sophisticated Typography */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-/* Global styles for elegant Asli restaurant */
+/* Global styles for sophisticated restaurant design */
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 16px;
   }
   
   body {
-    @apply font-sans text-text-light bg-background-deep asli-elegant;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    @apply font-sans text-warm-white bg-charcoal elegant-spacing;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
   }
   
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-elegant {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  }
+
+  /* Smooth scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-charcoal;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-light;
   }
 }
 
 @layer components {
-  /* Asli Brand Components */
+  /* Core sophisticated design elements */
+  .elegant-spacing {
+    letter-spacing: 0.015em;
+    line-height: 1.6;
+  }
+
+  .sophisticated-glow {
+    text-shadow: 
+      0 0 30px rgba(201, 169, 97, 0.6),
+      0 0 60px rgba(201, 169, 97, 0.3),
+      0 0 90px rgba(201, 169, 97, 0.1);
+    animation: ultraGlow 4s ease-in-out infinite;
+  }
+
+  .gold-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .elegant-overlay {
+    background: linear-gradient(135deg, 
+      rgba(13, 13, 13, 0.95) 0%, 
+      rgba(26, 26, 26, 0.9) 50%, 
+      rgba(42, 42, 42, 0.85) 100%);
+  }
+
+  .video-overlay {
+    background: linear-gradient(135deg, 
+      rgba(13, 13, 13, 0.7) 0%, 
+      rgba(26, 26, 26, 0.5) 50%, 
+      rgba(13, 13, 13, 0.8) 100%);
+  }
+
+  .sophisticated-border {
+    border-image: linear-gradient(90deg, transparent, #c9a961, transparent) 1;
+  }
+
+  .elegant-fade-in {
+    animation: elegantFadeIn 1.5s ease-out;
+  }
+
+  .refined-slide-up {
+    animation: refinedSlideUp 1.2s ease-out;
+  }
+
+  .gentle-float {
+    animation: premiumFloat 8s ease-in-out infinite;
+  }
+
+  .ultra-luxury {
+    animation: luxuryPulse 3s ease-in-out infinite;
+  }
+
+  .diamond-accent {
+    animation: diamondSpin 20s linear infinite;
+  }
+
+  .liquid-gold-bg {
+    background: linear-gradient(-45deg, #c9a961, #d4b574, #b8995a, #c9a961);
+    background-size: 400% 400%;
+    animation: liquidGold 8s ease infinite;
+  }
+
+  .scale-102 {
+    transform: scale(1.02);
+  }
+
+  .perspective-luxury {
+    perspective: 2000px;
+    transform-style: preserve-3d;
+  }
+
+  /* Sophisticated buttons */
+  .sophisticated-btn-primary {
+    @apply bg-gold text-charcoal font-medium px-12 py-4 rounded-none border border-gold;
+    @apply hover:bg-charcoal hover:text-gold hover:shadow-2xl;
+    @apply transition-all duration-500 transform hover:scale-[1.02];
+    @apply focus:outline-none focus:ring-1 focus:ring-gold focus:ring-opacity-50;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sophisticated-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .sophisticated-btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .sophisticated-btn-secondary {
+    @apply bg-transparent text-gold font-medium px-12 py-4 rounded-none border border-gold;
+    @apply hover:bg-gold hover:text-charcoal hover:shadow-xl;
+    @apply transition-all duration-500 transform hover:scale-[1.02];
+    @apply focus:outline-none focus:ring-1 focus:ring-gold focus:ring-opacity-50;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sophisticated-btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .sophisticated-btn-secondary:hover::before {
+    left: 100%;
+  }
+
+  /* Card and container styles */
+  .elegant-card {
+    @apply bg-charcoal-light border border-warm-gray/20 rounded-none;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+    position: relative;
+  }
+
+  .elegant-card:hover {
+    @apply border-gold/40 shadow-2xl;
+    transform: translateY(-2px);
+  }
+
+  .elegant-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9a961, transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .elegant-card:hover::before {
+    opacity: 1;
+  }
+
+  .sophisticated-container {
+    @apply min-h-screen flex items-center justify-center py-20 px-8;
+    position: relative;
+  }
+
+  /* Typography styles */
+  .sophisticated-text {
+    @apply text-warm-white tracking-refined leading-refined;
+  }
+
+  .elegant-heading {
+    @apply font-elegant text-gold tracking-elegant leading-elegant;
+  }
+
+  .display-heading {
+    @apply font-elegant text-gold tracking-elegant leading-elegant;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 300;
+  }
+
+  .section-heading {
+    @apply font-elegant text-gold tracking-elegant text-5xl md:text-6xl font-light;
+  }
+
+  .subsection-heading {
+    @apply font-serif text-warm-white text-2xl md:text-3xl font-medium;
+  }
+
+  /* Navigation styles */
+  .sophisticated-nav {
+    @apply bg-charcoal/95 backdrop-blur-md border-b border-gold/20;
+    transition: all 0.3s ease;
+  }
+
+  .sophisticated-nav-link {
+    @apply text-warm-white hover:text-gold transition-all duration-300 font-medium tracking-refined;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+
+  .sophisticated-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #c9a961;
+    transition: width 0.3s ease;
+  }
+
+  .sophisticated-nav-link:hover::after,
+  .sophisticated-nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Image and media styles */
+  .cinematic-image {
+    @apply object-cover w-full h-full;
+    filter: contrast(1.1) brightness(0.9) saturate(1.1);
+    transition: all 0.5s ease;
+  }
+
+  .cinematic-image:hover {
+    filter: contrast(1.2) brightness(1) saturate(1.2);
+    transform: scale(1.02);
+  }
+
+  /* Gallery styles */
+  .gallery-item {
+    @apply relative overflow-hidden cursor-pointer;
+    transition: all 0.5s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(201, 169, 97, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
+  }
+
+  /* Form styles */
+  .sophisticated-form-input {
+    @apply bg-charcoal-light border border-warm-gray/30 text-warm-white px-6 py-4 rounded-none;
+    @apply focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/50;
+    @apply transition-all duration-300;
+    backdrop-filter: blur(10px);
+  }
+
+  .sophisticated-form-input::placeholder {
+    @apply text-warm-gray-light;
+  }
+
+  .sophisticated-form-textarea {
+    @apply sophisticated-form-input resize-none;
+    min-height: 120px;
+  }
+
+  /* Legacy compatibility styles */
   .asli-elegant {
-    letter-spacing: 0.025em;
-    line-height: 1.7;
+    @apply elegant-spacing;
   }
 
   .asli-text-glow {
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    @apply sophisticated-glow;
   }
 
-  .asli-clay-overlay {
-    background: rgba(147, 63, 47, 0.6);
-  }
-
-  .asli-gold-glow {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-  }
-
-  .asli-texture-bg {
-    background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.1) 1px, transparent 0);
-    background-size: 20px 20px;
-  }
-
-  .asli-fade-in {
-    animation: asli-fadeIn 1.2s ease-out;
-  }
-
-  .asli-slide-up {
-    animation: asli-slideUp 1s ease-out;
-  }
-
-  /* Enhanced Button Styles */
   .asli-btn-primary {
-    @apply bg-clay-red text-text-light border-2 border-antique-gold px-8 py-3 rounded-full font-sans font-medium tracking-relaxed transition-all duration-300 asli-gold-glow;
-  }
-
-  .asli-btn-primary:hover {
-    @apply bg-antique-gold text-clay-red transform scale-105;
+    @apply sophisticated-btn-primary;
   }
 
   .asli-btn-secondary {
-    @apply bg-transparent text-antique-gold border-2 border-antique-gold px-8 py-3 rounded-full font-sans font-medium tracking-relaxed transition-all duration-300;
+    @apply sophisticated-btn-secondary;
   }
 
-  .asli-btn-secondary:hover {
-    @apply bg-antique-gold text-background-deep transform scale-105;
+  .asli-fade-in {
+    @apply elegant-fade-in;
   }
 
-  /* Updated Legacy Styles */
-  .glass-effect {
-    background: rgba(249, 243, 234, 0.25);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.18);
+  .asli-slide-up {
+    @apply refined-slide-up;
   }
-  
-  .gold-gradient {
-    background: linear-gradient(135deg, #d4af37 0%, #f7e98e 50%, #d4af37 100%);
-  }
-  
-  .text-shadow-gold {
-    text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
-  }
-  
-  .btn-primary {
-    @apply bg-clay-red text-text-light px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-antique-gold hover:text-clay-red hover:scale-105 hover:shadow-lg border-2 border-antique-gold;
-  }
-  
-  .btn-secondary {
-    @apply border-2 border-antique-gold text-antique-gold px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-antique-gold hover:text-background-deep hover:scale-105;
-  }
-  
-  .section-container {
-    @apply min-h-screen flex items-center justify-center p-8;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-500 hover:scale-105 hover:shadow-2xl;
+
+  .asli-gold-glow {
+    box-shadow: 0 0 30px rgba(201, 169, 97, 0.3);
   }
 }
 
@@ -129,47 +375,272 @@
   .cursor-zoom-out {
     cursor: zoom-out;
   }
+
+  .text-shadow-elegant {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 }
 
-/* Asli Custom Animations */
-@keyframes asli-fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Ultra-Sophisticated Animations */
+@keyframes elegantFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-@keyframes asli-slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes ultraGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px rgba(201, 169, 97, 0.8),
+      0 0 60px rgba(201, 169, 97, 0.4),
+      0 0 90px rgba(201, 169, 97, 0.2);
+  }
+}
+
+@keyframes luxuryPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(201, 169, 97, 0.6);
+  }
+}
+
+@keyframes premiumFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes diamondSpin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes liquidGold {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes refinedSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 @keyframes shimmer {
   0% {
-    background-position: -468px 0;
+    background-position: -200% 0;
   }
   100% {
-    background-position: 468px 0;
+    background-position: 200% 0;
   }
 }
 
-.shimmer {
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-  background-size: 468px 100%;
-  animation: shimmer 2s infinite;
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-/* Parallax and 3D effects */
-.parallax-container {
-  transform-style: preserve-3d;
-  perspective: 1000px;
+/* Legacy keyframes for compatibility */
+@keyframes asli-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-.floating-element {
-  animation: float 6s ease-in-out infinite;
+@keyframes asli-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
-  .section-container {
-    @apply p-4;
+  .sophisticated-container {
+    @apply px-4 py-16;
   }
+
+  .sophisticated-btn-primary,
+  .sophisticated-btn-secondary {
+    @apply px-8 py-3 text-xs;
+  }
+
+  .display-heading {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl;
+  }
+}
+
+/* Video background styles */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Sophisticated hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Elegant spacing utilities */
+.section-padding {
+  @apply py-12 lg:py-16;
+}
+
+.container-padding {
+  @apply px-6 lg:px-12 xl:px-24;
+}
+
+/* Refined grid layouts */
+.elegant-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.elegant-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.elegant-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.elegant-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }

@@ -21,21 +21,20 @@ export const loadImagesByPrefix = (prefix) => {
       { filename: 'food06.jpg', title: 'Jhol Momo', description: 'Steamed dumplings served in flavorful spiced broth', category: 'Appetizer', ingredients: 'Wheat Flour, Filling, Spiced Broth, Vegetables' },
       { filename: 'food07.jpg', title: 'Filter Kaapi Biscoot', description: 'Traditional South Indian filter coffee served with crispy biscuits', category: 'Dessert', ingredients: 'Coffee Powder, Milk, Sugar, Butter Biscuits' }
     ],
-          menu: [
-        { filename: 'menu front page 1.png', title: '', description: '' },
-        { filename: 'menu 2nd page 2.png', title: '', description: '' },
-        { filename: 'soups 3.png', title: 'soups', description: '' },
-        { filename: 'appetisers 4.png', title: 'appetisers', description: '' },
-        { filename: 'kebabs and grills 5.png', title: 'kebabs and grills', description: '' },
-        { filename: 'main course 6.png', title: 'main course', description: '' },
-        { filename: 'main course 7.png', title: 'main course', description: '' },
-        { filename: 'biryani and pulaos 8.png', title: 'biryani and pulaos', description: '' },
-        { filename: 'asli signatures 9.png', title: 'asli signatures', description: '' },
-        { filename: 'breads and dosas 10.png', title: 'breads and dosas', description: '' },
-        { filename: 'rice and desserts 11.png', title: 'rice and desserts', description: '' },
-        { filename: 'beverages 12.png', title: 'beverages', description: '' },
-        { filename: 'menu last page 13.png', title: '', description: '' }
-      ]
+    menu: [
+      { filename: 'menu front page 1.png', title: '', description: '' },
+      { filename: 'menu 2nd page 2.png', title: '', description: '' },
+      { filename: 'soups 3.png', title: 'soups', description: '' },
+      { filename: 'appetisers 4.png', title: 'appetisers', description: '' },
+      { filename: 'kebabs and grills 5.png', title: 'kebabs and grills', description: '' },
+      { filename: 'main course 6.png', title: 'main course', description: '' },
+      { filename: 'main course 7.png', title: 'main course', description: '' },
+      { filename: 'biryani and pulaos 8.png', title: 'biryani and pulaos', description: '' },
+      { filename: 'asli signatures 9.png', title: 'asli signatures', description: '' },
+      { filename: 'breads and dosas 10.png', title: 'breads and dosas', description: '' },
+      { filename: 'rice and desserts 11.png', title: 'rice and desserts', description: '' },
+      { filename: 'beverages 12.png', title: 'beverages', description: '' }
+    ]
   };
 
   const images = imageDatabase[prefix] || [];

@@ -132,7 +132,7 @@ const MenuSection = () => {
     <section id="menu" className="min-h-screen bg-gradient-to-b from-gray-900 to-black py-20">
       {/* Section Title */}
       <div className="text-center mb-12 sm:mb-16 px-4">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-4 sm:mb-6">
+                  <h2 className="font-elegant text-4xl lg:text-5xl text-gold mb-4 sm:mb-6">
           <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
             Our Menu
           </span>
@@ -195,7 +195,7 @@ const MenuSection = () => {
 
                 {/* Card Content */}
                 <div className="p-6">
-                  <h3 className="font-serif text-xl font-semibold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                  <h3 className="font-elegant text-xl text-gold mb-2 group-hover:text-gold-light transition-colors duration-300">
                     {image.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
@@ -214,7 +214,7 @@ const MenuSection = () => {
           {/* Header Controls */}
           <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <h3 className="text-white font-serif text-xl">{selectedImage.title}</h3>
+              <h3 className="font-elegant text-xl text-gold">{selectedImage.title}</h3>
               <span className="text-gray-400 text-sm">
                 Page {selectedImage.index + 1} of {images.length}
               </span>

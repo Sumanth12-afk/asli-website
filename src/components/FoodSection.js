@@ -1,10 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { loadImagesByPrefix, createFallbackSVG } from '../utils/imageLoader';
 
 const FoodSection = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const foodImages = loadImagesByPrefix('food');
@@ -58,188 +76,304 @@ const FoodSection = () => {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, navigateLightbox]);
 
-  if (images.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-yellow-400 font-serif text-lg">Loading signature dishes...</p>
-        </div>
-      </div>
-    );
-  }
+  if (images.length === 0) return null;
 
   return (
-    <section id="food" className="min-h-screen bg-gradient-to-b from-background-deep to-background-brown py-20">
-      {/* Section Title */}
-      <div className="text-center mb-12 sm:mb-16 px-4">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-text-light mb-4 sm:mb-6 asli-fade-in">
-          <span className="bg-gradient-to-r from-antique-gold to-yellow-400 bg-clip-text text-transparent asli-text-glow">
-            Signature Dishes
-          </span>
-        </h2>
-        <div className="flex items-center justify-center mb-6 sm:mb-8">
-          <div className="w-12 sm:w-16 md:w-20 h-0.5 bg-gradient-to-r from-transparent to-antique-gold"></div>
-          <div className="mx-3 sm:mx-4 w-2 h-2 sm:w-3 sm:h-3 bg-antique-gold transform rotate-45 asli-gold-glow"></div>
-          <div className="w-12 sm:w-16 md:w-20 h-0.5 bg-gradient-to-l from-transparent to-antique-gold"></div>
-        </div>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-ivory max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto leading-calm tracking-relaxed asli-slide-up">
-          Discover our exquisite culinary creations, each dish crafted with passion and authentic Indian flavors
-        </p>
-      </div>
+    <>
+      <section 
+        ref={sectionRef}
+        id="food" 
+        className="py-8 bg-gradient-to-b from-charcoal-light to-charcoal relative overflow-hidden"
+      >
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/1 via-transparent to-charcoal-lighter/30" />
+        
+        <div className="container-padding max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div 
+            className={`text-center mb-8 transform transition-all duration-1500 ${
+              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+          >
+            <div className="inline-block mb-6">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-8 h-px bg-gold" />
+                <div className="w-2 h-2 bg-gold rotate-45" />
+                <div className="w-8 h-px bg-gold" />
+              </div>
+            </div>
+            <h2 className="font-elegant text-4xl lg:text-5xl text-gold mb-4">
+              Signature Dishes
+            </h2>
+            <p className="sophisticated-text text-lg max-w-2xl mx-auto">
+              Discover our culinary masterpieces, each dish crafted with passion 
+              and presented with the finest ingredients from across India.
+            </p>
+          </div>
 
-      {/* Food Grid/Carousel */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer transform transition-all duration-500 hover:scale-105"
-              onClick={() => openLightbox(image, index)}
-            >
-              {/* Card Container */}
-              <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-400/20">
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={image.src}
-                    alt={image.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.src = createFallbackSVG(image.title, 400, 300);
-                    }}
-                  />
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center justify-center w-12 h-12 bg-yellow-400 rounded-full mx-auto mb-2 transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-200">
-                        <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Premium Food Grid - Custom Layout: 4 + 3 */}
+          <div className="mt-12 space-y-8">
+            {/* First Row - 4 Items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {images.slice(0, 4).map((image, index) => (
+                <div
+                  key={index}
+                  className={`group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 ${
+                    isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                  onClick={() => openLightbox(image, index)}
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      style={{
+                        filter: 'contrast(1.1) brightness(0.95) saturate(1.2)',
+                      }}
+                      onError={(e) => {
+                        e.target.src = createFallbackSVG(image.title);
+                      }}
+                    />
+                    
+                    {/* Premium Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-gold/90 text-charcoal px-3 py-1 text-xs font-medium tracking-wide uppercase backdrop-blur-sm">
+                        {image.category}
+                      </span>
+                    </div>
+
+                    {/* Zoom Indicator */}
+                    <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-black/50 backdrop-blur-sm text-warm-white p-2 rounded-none">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                         </svg>
                       </div>
-                      <p className="text-white text-sm font-medium text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-300">
-                        Click to view details
-                      </p>
                     </div>
                   </div>
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-1 rounded-full text-sm font-semibold transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    {image.category}
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="font-elegant text-xl lg:text-2xl text-gold mb-3 group-hover:text-gold-light transition-colors duration-300">
+                      {image.title}
+                    </h3>
+                    <p className="sophisticated-text text-sm lg:text-base leading-relaxed mb-4 opacity-90">
+                      {image.description}
+                    </p>
+                    
+                    {/* Ingredients */}
+                    {image.ingredients && (
+                      <div className="pt-4 border-t border-warm-gray/20">
+                        <span className="text-gold text-xs font-medium tracking-wide uppercase mb-2 block">
+                          Key Ingredients
+                        </span>
+                        <p className="text-warm-white/70 text-xs leading-relaxed">
+                          {image.ingredients}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Premium Action Button */}
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <button className="sophisticated-btn-secondary text-xs px-6 py-3 w-full">
+                        View Details
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Tilt Effect Shadow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Decorative Elements */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
-
-                {/* Card Content */}
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-semibold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
-                    {image.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 group-hover:text-gray-300 transition-colors duration-300">
-                    {image.description}
-                  </p>
-                  
-                  {/* Hover indicator */}
-                  <div className="mt-4 flex items-center text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-sm font-medium">View Details</span>
-                    <svg className="w-4 h-4 ml-2 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Lightbox Modal */}
-      {isLightboxOpen && selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm">
-          {/* Close Button */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-8 right-8 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors duration-300"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          {/* Modal Content */}
-          <div className="relative max-w-6xl max-h-[90vh] w-full mx-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-              {/* Image */}
-              <div className="relative h-96 lg:h-[600px]">
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
-              </div>
-
-              {/* Details */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="mb-6">
-                  <span className="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                    {selectedImage.category}
-                  </span>
-                  <h2 className="font-serif text-4xl lg:text-5xl text-white mb-6">
-                    {selectedImage.title}
-                  </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                    {selectedImage.description}
-                  </p>
-                  <div>
-                    <h4 className="font-semibold text-yellow-400 mb-3 text-lg">Key Ingredients:</h4>
-                    <p className="text-gray-400 leading-relaxed">{selectedImage.ingredients}</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => navigateLightbox('prev')}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={() => navigateLightbox('next')}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+            {/* Second Row - 3 Items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-4xl mx-auto">
+              {images.slice(4, 7).map((image, index) => (
+                <div
+                  key={index + 4}
+                  className={`group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 ${
+                    isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${(index + 4) * 150}ms` }}
+                  onClick={() => openLightbox(image, index + 4)}
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      style={{
+                        filter: 'contrast(1.1) brightness(0.95) saturate(1.2)',
+                      }}
+                      onError={(e) => {
+                        e.target.src = createFallbackSVG(image.title);
+                      }}
+                    />
+                    
+                    {/* Premium Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-gold/90 text-charcoal px-3 py-1 text-xs font-medium tracking-wide uppercase backdrop-blur-sm">
+                        {image.category}
+                      </span>
+                    </div>
 
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
-              {selectedImage.index + 1} of {images.length}
+                    {/* Zoom Indicator */}
+                    <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-black/50 backdrop-blur-sm text-warm-white p-2 rounded-none">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="font-elegant text-xl lg:text-2xl text-gold mb-3 group-hover:text-gold-light transition-colors duration-300">
+                      {image.title}
+                    </h3>
+                    <p className="sophisticated-text text-sm lg:text-base leading-relaxed mb-4 opacity-90">
+                      {image.description}
+                    </p>
+                    
+                    {/* Ingredients */}
+                    {image.ingredients && (
+                      <div className="pt-4 border-t border-warm-gray/20">
+                        <span className="text-gold text-xs font-medium tracking-wide uppercase mb-2 block">
+                          Key Ingredients
+                        </span>
+                        <p className="text-warm-white/70 text-xs leading-relaxed">
+                          {image.ingredients}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Premium Action Button */}
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <button className="sophisticated-btn-secondary text-xs px-6 py-3 w-full">
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Decorative Elements */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Click outside to close */}
+          {/* Premium Call to Action */}
           <div 
-            className="absolute inset-0 -z-10" 
-            onClick={closeLightbox}
-          />
+            className={`text-center mt-8 transform transition-all duration-1500 delay-500 ${
+              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <p className="sophisticated-text text-lg mb-8 max-w-2xl mx-auto">
+              Experience the authentic flavors that have made Asli Indian a culinary destination
+            </p>
+            <button className="sophisticated-btn-primary">
+              Explore Full Menu
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Ultra-Premium Lightbox */}
+      {isLightboxOpen && selectedImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm">
+          <div className="relative max-w-6xl max-h-[90vh] w-full mx-8">
+            {/* Main Image */}
+            <div className="relative">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="w-full h-full object-contain max-h-[70vh]"
+              />
+              
+              {/* Navigation Arrows */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => navigateLightbox('prev')}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-warm-white p-3 rounded-none transition-all duration-300"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => navigateLightbox('next')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-warm-white p-3 rounded-none transition-all duration-300"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Content Panel */}
+            <div className="bg-charcoal-light/95 backdrop-blur-sm p-8 mt-4">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <span className="bg-gold text-charcoal px-3 py-1 text-xs font-medium tracking-wide uppercase mb-3 inline-block">
+                    {selectedImage.category}
+                  </span>
+                  <h3 className="font-elegant text-2xl text-gold mb-4">{selectedImage.title}</h3>
+                </div>
+                <button
+                  onClick={closeLightbox}
+                  className="bg-black/50 hover:bg-black/70 text-warm-white p-3 rounded-none transition-all duration-300"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <p className="sophisticated-text text-lg leading-relaxed mb-6 opacity-90">
+                {selectedImage.description}
+              </p>
+              
+              {selectedImage.ingredients && (
+                <div className="pt-4 border-t border-warm-gray/20">
+                  <span className="text-gold text-sm font-medium tracking-wide uppercase mb-3 block">
+                    Key Ingredients
+                  </span>
+                  <p className="text-warm-white/80 leading-relaxed">
+                    {selectedImage.ingredients}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Image Counter */}
+            {images.length > 1 && (
+              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-warm-white px-3 py-2 rounded-none text-sm">
+                {selectedImage.index + 1} of {images.length}
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </section>
+    </>
   );
 };
 

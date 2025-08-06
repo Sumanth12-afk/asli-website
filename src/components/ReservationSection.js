@@ -100,7 +100,7 @@ const ReservationSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-4 sm:mb-6">
+          <h2 className="font-elegant text-4xl lg:text-5xl text-gold mb-4 sm:mb-6">
             <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
               Reservations
             </span>
@@ -118,7 +118,7 @@ const ReservationSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Reservation Form */}
           <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50">
-            <h3 className="font-serif text-3xl text-white mb-8 text-center">
+            <h3 className="font-elegant text-2xl text-gold mb-8 text-center">
               Book Your Table
             </h3>
 
@@ -290,7 +290,7 @@ const ReservationSection = () => {
           <div className="space-y-8">
             {/* Restaurant Hours */}
             <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50">
-              <h3 className="font-serif text-2xl text-white mb-6">Restaurant Hours</h3>
+              <h3 className="font-elegant text-2xl text-gold mb-6">Restaurant Hours</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center py-2 border-b border-gray-700/50">
                   <span className="text-gray-300">Monday - Thursday</span>
@@ -309,7 +309,7 @@ const ReservationSection = () => {
 
             {/* Quick Contact */}
             <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50">
-              <h3 className="font-serif text-2xl text-white mb-6">Quick Contact</h3>
+              <h3 className="font-elegant text-2xl text-gold mb-6">Quick Contact</h3>
               <div className="space-y-4">
                 <a
                   href="tel:+918977710146"
@@ -347,7 +347,7 @@ const ReservationSection = () => {
 
             {/* Additional Info */}
             <div className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50">
-              <h3 className="font-serif text-2xl text-white mb-6">Important Information</h3>
+              <h3 className="font-elegant text-2xl text-gold mb-6">Important Information</h3>
               <div className="space-y-3 text-gray-300">
                 <p className="flex items-start">
                   <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>

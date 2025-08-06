@@ -60,7 +60,7 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-text-light mb-4 sm:mb-6 asli-fade-in">
+          <h2 className="font-elegant text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-gold mb-4 sm:mb-6 asli-fade-in">
             <span className="bg-gradient-to-r from-antique-gold to-yellow-400 bg-clip-text text-transparent asli-text-glow">
               Visit Us
             </span>
@@ -88,7 +88,7 @@ const ContactSection = () => {
                     {info.icon}
                   </div>
                   <div className="flex-1 text-center sm:text-left">
-                    <h3 className="font-serif text-xl sm:text-2xl font-semibold text-text-light mb-3 sm:mb-4">
+                    <h3 className="font-elegant text-xl sm:text-2xl  text-gold mb-3 sm:mb-4">
                       {info.title}
                     </h3>
                     <div className="space-y-1 sm:space-y-2">
@@ -105,7 +105,7 @@ const ContactSection = () => {
 
             {/* Social Media */}
             <div className="bg-gradient-to-b from-clay-red/30 to-background-deep/50 backdrop-blur-sm rounded-3xl p-8 border border-antique-gold/30 asli-gold-glow">
-              <h3 className="font-serif text-2xl font-semibold text-text-light mb-6 text-center">
+              <h3 className="font-elegant text-2xl  text-gold mb-6 text-center">
                 Follow Our Journey
               </h3>
               <div className="flex justify-center space-x-6">
@@ -130,7 +130,7 @@ const ContactSection = () => {
             {/* Google Maps */}
             <div className="bg-gradient-to-b from-clay-red/30 to-background-deep/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-antique-gold/30 asli-gold-glow">
               <div className="p-6 border-b border-antique-gold/30">
-                <h3 className="font-serif text-2xl font-semibold text-text-light text-center">
+                <h3 className="font-elegant text-2xl  text-gold text-center">
                   Our Location
                 </h3>
               </div>
@@ -158,7 +158,7 @@ const ContactSection = () => {
 
             {/* Getting Here */}
             <div className="bg-gradient-to-b from-clay-red/30 to-background-deep/50 backdrop-blur-sm rounded-3xl p-8 border border-antique-gold/30 asli-gold-glow">
-              <h3 className="font-serif text-2xl font-semibold text-text-light mb-6 text-center">
+              <h3 className="font-elegant text-2xl  text-gold mb-6 text-center">
                 Getting Here
               </h3>
               <div className="space-y-6">
@@ -169,7 +169,7 @@ const ContactSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light text-lg mb-1">By Metro</h4>
+                    <h4 className=" text-gold text-lg mb-1">By Metro</h4>
                     <p className="text-muted-ivory">Jubilee Hills Checkpost</p>
                     <p className="text-muted-ivory/70 text-sm">5 minutes by auto/cab</p>
                   </div>
@@ -182,7 +182,7 @@ const ContactSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light text-lg mb-1">Parking</h4>
+                    <h4 className=" text-gold text-lg mb-1">Parking</h4>
                     <p className="text-muted-ivory">Ample parking available</p>
                     <p className="text-muted-ivory/70 text-sm">Free for restaurant guests</p>
                   </div>
@@ -195,7 +195,7 @@ const ContactSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-text-light text-lg mb-1">Landmarks</h4>
+                    <h4 className=" text-gold text-lg mb-1">Landmarks</h4>
                     <p className="text-muted-ivory">Jubilee Hills Road No. 36</p>
                     <p className="text-muted-ivory/70 text-sm">Near GVK One Mall</p>
                   </div>
@@ -208,7 +208,7 @@ const ContactSection = () => {
         {/* Footer */}
         <div className="mt-20 pt-12 border-t border-antique-gold/30 text-center">
           <div className="mb-8">
-            <h3 className="font-serif text-3xl text-text-light mb-2">
+            <h3 className="font-elegant text-3xl text-gold mb-2">
               <span className="bg-gradient-to-r from-antique-gold to-yellow-400 bg-clip-text text-transparent asli-text-glow">
                 Asli Indian
               </span>
