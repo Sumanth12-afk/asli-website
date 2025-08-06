@@ -104,7 +104,7 @@ const AmbienceSection = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [isModalOpen, nextSlide, prevSlide]);
 
-  if (images.length === 0) return null;
+  // Always show the section even if images fail to load
 
   return (
     <>
@@ -141,19 +141,32 @@ const AmbienceSection = () => {
 
         {/* Ultra-Premium Gallery - Full Width */}
         <div className="relative">
-          {/* Main Image Display */}
-          <div 
-            className="relative h-screen w-screen overflow-hidden group cursor-zoom-in"
-            onClick={() => openModal(images[currentSlide])}
-            style={{
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-              marginLeft: 'calc(-50vw + 50%)',
-              marginRight: 'calc(-50vw + 50%)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10" />
-            
-            {images.map((image, index) => (
+          {images.length === 0 ? (
+            <div className="text-center py-32 h-screen flex items-center justify-center"
+                 style={{
+                   marginLeft: 'calc(-50vw + 50%)',
+                   marginRight: 'calc(-50vw + 50%)',
+                 }}>
+              <div>
+                <p className="text-gold text-xl">Loading ambience gallery...</p>
+                <p className="text-warm-white/70 mt-4">Images: {images.length}</p>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Main Image Display */}
+              <div 
+                className="relative h-screen w-screen overflow-hidden group cursor-zoom-in"
+                onClick={() => openModal(images[currentSlide])}
+                style={{
+                  transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
+                  marginLeft: 'calc(-50vw + 50%)',
+                  marginRight: 'calc(-50vw + 50%)',
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10" />
+                
+                {images.map((image, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-all duration-1000 ${
@@ -252,14 +265,17 @@ const AmbienceSection = () => {
                   </svg>
                 )}
               </button>
+              </div>
             </div>
+              </>
+            )}
           </div>
-        </div>
 
         {/* Thumbnail Gallery */}
-        <div className="container-padding max-w-7xl mx-auto py-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {images.map((image, index) => (
+        {images.length > 0 && (
+          <div className="container-padding max-w-7xl mx-auto py-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {images.map((image, index) => (
               <div
                 key={index}
                 onClick={() => setCurrentSlide(index)}
@@ -280,9 +296,10 @@ const AmbienceSection = () => {
                     : 'bg-black/20 group-hover:bg-black/10'
                 }`} />
               </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* Ultra-Premium Modal */}

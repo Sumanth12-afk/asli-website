@@ -80,7 +80,7 @@ const FoodSection = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, navigateLightbox]);
 
-  if (images.length === 0) return null;
+  // Always show the section even if images fail to load
 
   return (
     <>
@@ -117,9 +117,16 @@ const FoodSection = () => {
 
           {/* Premium Food Grid - Custom Layout: 4 + 3 */}
           <div className="mt-12 space-y-8">
-            {/* First Row - 4 Items */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {images.slice(0, 4).map((image, index) => (
+            {images.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-gold text-xl">Loading signature dishes...</p>
+                <p className="text-warm-white/70 mt-4">Images: {images.length}</p>
+              </div>
+            ) : (
+              <>
+                {/* First Row - 4 Items */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {images.slice(0, 4).map((image, index) => (
                 <div
                   key={index}
                   className={`group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 ${
@@ -274,8 +281,10 @@ const FoodSection = () => {
                   {/* Decorative Elements */}
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
-              ))}
-            </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Premium Call to Action */}
