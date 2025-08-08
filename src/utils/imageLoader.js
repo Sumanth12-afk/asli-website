@@ -1,6 +1,7 @@
 // Utility function to load images from the unified /images/ folder based on prefixes
 
 export const loadImagesByPrefix = (prefix) => {
+  console.log('loadImagesByPrefix called with prefix:', prefix);
   // Define image lists for each category based on prefix
   const imageDatabase = {
     ambience: [
@@ -38,12 +39,16 @@ export const loadImagesByPrefix = (prefix) => {
   };
 
   const images = imageDatabase[prefix] || [];
+  console.log('Found images for prefix', prefix, ':', images);
   
-  return images.map((image, index) => ({
+  const mappedImages = images.map((image, index) => ({
     ...image,
     src: `/images/${image.filename}`,
     id: index + 1
   }));
+  
+  console.log('Mapped images:', mappedImages);
+  return mappedImages;
 };
 
 // Function to create fallback SVG for missing images

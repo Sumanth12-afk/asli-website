@@ -84,12 +84,16 @@ const FoodSection = () => {
 
   // Always show the section even if images fail to load
 
+  console.log('FoodSection render - images length:', images.length);
+  console.log('FoodSection render - isInView:', isInView);
+
   return (
     <>
       <section 
         ref={sectionRef}
         id="food" 
         className="py-8 bg-gradient-to-b from-charcoal-light to-charcoal relative overflow-hidden"
+        style={{ minHeight: '50vh' }}
       >
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-gold/1 via-transparent to-charcoal-lighter/30" />
@@ -111,6 +115,10 @@ const FoodSection = () => {
             <h2 className="font-elegant text-4xl lg:text-5xl text-gold mb-4">
               Signature Dishes
             </h2>
+            {/* Debug info */}
+            <div className="bg-red-500 text-white p-2 text-xs mb-4">
+              DEBUG: Images loaded: {images.length} | In view: {isInView ? 'Yes' : 'No'}
+            </div>
             <p className="sophisticated-text text-lg max-w-2xl mx-auto">
               Discover our culinary masterpieces, each dish crafted with passion 
               and presented with the finest ingredients from across India.
