@@ -74,9 +74,9 @@ const FoodSection = () => {
         style={{ minHeight: '50vh' }}
       >
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gold/1 via-transparent to-charcoal-lighter/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/1 via-transparent to-charcoal-lighter/30 -z-10 pointer-events-none" />
         
-        <div className="container-padding max-w-7xl mx-auto">
+        <div className="container-padding max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-8">
             <div className="inline-block mb-6">
@@ -135,7 +135,7 @@ const FoodSection = () => {
                     />
                     
                     {/* Premium Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500 -z-10 pointer-events-none" />
                     
                     {/* Category Badge */}
                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10">
@@ -212,7 +212,7 @@ const FoodSection = () => {
                     />
                     
                     {/* Premium Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500 -z-10 pointer-events-none" />
                     
                     {/* Category Badge */}
                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10">
