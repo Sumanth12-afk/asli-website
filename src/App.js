@@ -3,8 +3,6 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AmbienceSection from './components/AmbienceSection';
 import FoodSection from './components/FoodSection';
-import TestSection from './components/TestSection';
-import SimpleFoodSection from './components/SimpleFoodSection';
 import MenuSection from './components/MenuSection';
 import ReservationSection from './components/ReservationSection';
 import ContactSection from './components/ContactSection';
@@ -107,12 +105,6 @@ function App() {
       {/* Ambience Section */}
       <AmbienceSection />
 
-      {/* Test Section */}
-      <TestSection />
-      
-      {/* Simple Food Section */}
-      <SimpleFoodSection />
-      
       {/* Food Section */}
       <FoodSection />
 

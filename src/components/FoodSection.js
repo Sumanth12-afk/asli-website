@@ -5,29 +5,10 @@ const FoodSection = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef(null);
-
-  // Intersection Observer for scroll-triggered animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const foodImages = loadImagesByPrefix('food');
-    console.log('FoodSection: Loaded images:', foodImages);
-    console.log('FoodSection: Image count:', foodImages.length);
     setImages(foodImages);
   }, []);
 
@@ -82,10 +63,7 @@ const FoodSection = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, navigateLightbox]);
 
-  // Always show the section even if images fail to load
 
-  console.log('FoodSection render - images length:', images.length);
-  console.log('FoodSection render - isInView:', isInView);
 
   return (
     <>
@@ -100,11 +78,7 @@ const FoodSection = () => {
         
         <div className="container-padding max-w-7xl mx-auto">
           {/* Section Header */}
-          <div 
-            className={`text-center mb-8 transform transition-all duration-1500 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-            }`}
-          >
+          <div className="text-center mb-8">
             <div className="inline-block mb-6">
               <div className="flex items-center justify-center space-x-4">
                 <div className="w-8 h-px bg-gold" />
@@ -115,15 +89,7 @@ const FoodSection = () => {
             <h2 className="font-elegant text-4xl lg:text-5xl text-gold mb-4">
               Signature Dishes
             </h2>
-            {/* Debug info */}
-            <div className="bg-red-500 text-white p-4 text-sm mb-4 border-2 border-yellow-400">
-              <strong>MOBILE DEBUG:</strong><br/>
-              Images loaded: {images.length}<br/>
-              In view: {isInView ? 'Yes' : 'No'}<br/>
-              Component rendered: YES<br/>
-              {images.length > 0 && <span>✅ Images found</span>}
-              {images.length === 0 && <span>❌ No images loaded</span>}
-            </div>
+
             <p className="sophisticated-text text-lg max-w-2xl mx-auto">
               Discover our culinary masterpieces, each dish crafted with passion 
               and presented with the finest ingredients from across India.
@@ -151,10 +117,7 @@ const FoodSection = () => {
                   {images.slice(0, 4).map((image, index) => (
                 <div
                   key={index}
-                  className={`group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 ${
-                    isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  className="group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 opacity-100"
                   onClick={() => openLightbox(image, index)}
                 >
                   {/* Image Container */}
@@ -167,11 +130,7 @@ const FoodSection = () => {
                         filter: 'contrast(1.1) brightness(0.95) saturate(1.2)',
                       }}
                       onError={(e) => {
-                        console.log('Image failed to load (row 1):', image.src, 'Title:', image.title);
                         e.target.src = createFallbackSVG(image.title);
-                      }}
-                      onLoad={() => {
-                        console.log('Image loaded successfully (row 1):', image.src);
                       }}
                     />
                     
@@ -235,10 +194,7 @@ const FoodSection = () => {
               {images.slice(4, 7).map((image, index) => (
                 <div
                   key={index + 4}
-                  className={`group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 ${
-                    isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${(index + 4) * 150}ms` }}
+                  className="group relative overflow-hidden elegant-card cursor-pointer hover-lift transform transition-all duration-700 opacity-100"
                   onClick={() => openLightbox(image, index + 4)}
                 >
                   {/* Image Container */}
@@ -251,11 +207,7 @@ const FoodSection = () => {
                         filter: 'contrast(1.1) brightness(0.95) saturate(1.2)',
                       }}
                       onError={(e) => {
-                        console.log('Image failed to load (row 2):', image.src, 'Title:', image.title);
                         e.target.src = createFallbackSVG(image.title);
-                      }}
-                      onLoad={() => {
-                        console.log('Image loaded successfully (row 2):', image.src);
                       }}
                     />
                     
@@ -318,11 +270,7 @@ const FoodSection = () => {
           </div>
 
           {/* Premium Call to Action */}
-          <div 
-            className={`text-center mt-8 transform transition-all duration-1500 delay-500 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
+          <div className="text-center mt-8">
             <p className="sophisticated-text text-lg mb-8 max-w-2xl mx-auto">
               Experience the authentic flavors that have made Asli Indian a culinary destination
             </p>
