@@ -212,6 +212,8 @@
   /* Typography styles */
   .sophisticated-text {
     @apply text-warm-white tracking-refined leading-refined;
+    opacity: 1 !important;
+    font-weight: 500;
   }
 
   .elegant-heading {

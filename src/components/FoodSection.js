@@ -90,7 +90,7 @@ const FoodSection = () => {
               Signature Dishes
             </h2>
 
-            <p className="sophisticated-text text-lg max-w-2xl mx-auto">
+            <p className="text-warm-white text-lg max-w-2xl mx-auto font-medium opacity-100">
               Discover our culinary masterpieces, each dish crafted with passion 
               and presented with the finest ingredients from across India.
             </p>
@@ -159,7 +159,7 @@ const FoodSection = () => {
                     <h3 className="font-elegant text-base sm:text-lg lg:text-xl xl:text-2xl text-gold mb-2 sm:mb-3 group-hover:text-gold-light transition-colors duration-300">
                       {image.title}
                     </h3>
-                    <p className="sophisticated-text text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 opacity-90">
+                    <p className="text-warm-white text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 opacity-100 font-medium">
                       {image.description}
                     </p>
                     
@@ -169,7 +169,7 @@ const FoodSection = () => {
                         <span className="text-gold text-xs font-medium tracking-wide uppercase mb-2 block">
                           Key Ingredients
                         </span>
-                        <p className="text-warm-white/70 text-xs leading-relaxed">
+                        <p className="text-warm-white text-xs leading-relaxed opacity-90">
                           {image.ingredients}
                         </p>
                       </div>
@@ -236,7 +236,7 @@ const FoodSection = () => {
                     <h3 className="font-elegant text-base sm:text-lg lg:text-xl xl:text-2xl text-gold mb-2 sm:mb-3 group-hover:text-gold-light transition-colors duration-300">
                       {image.title}
                     </h3>
-                    <p className="sophisticated-text text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 opacity-90">
+                    <p className="text-warm-white text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 opacity-100 font-medium">
                       {image.description}
                     </p>
                     
@@ -246,7 +246,7 @@ const FoodSection = () => {
                         <span className="text-gold text-xs font-medium tracking-wide uppercase mb-2 block">
                           Key Ingredients
                         </span>
-                        <p className="text-warm-white/70 text-xs leading-relaxed">
+                        <p className="text-warm-white text-xs leading-relaxed opacity-90">
                           {image.ingredients}
                         </p>
                       </div>
@@ -271,7 +271,7 @@ const FoodSection = () => {
 
           {/* Premium Call to Action */}
           <div className="text-center mt-8">
-            <p className="sophisticated-text text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-warm-white text-lg mb-8 max-w-2xl mx-auto font-medium opacity-100">
               Experience the authentic flavors that have made Asli Indian a culinary destination
             </p>
             <button className="sophisticated-btn-primary">
@@ -335,7 +335,7 @@ const FoodSection = () => {
                 </button>
               </div>
               
-              <p className="sophisticated-text text-lg leading-relaxed mb-6 opacity-90">
+              <p className="text-warm-white text-lg leading-relaxed mb-6 opacity-100 font-medium">
                 {selectedImage.description}
               </p>
               
