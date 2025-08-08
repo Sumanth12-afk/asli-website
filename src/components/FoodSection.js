@@ -116,8 +116,13 @@ const FoodSection = () => {
               Signature Dishes
             </h2>
             {/* Debug info */}
-            <div className="bg-red-500 text-white p-2 text-xs mb-4">
-              DEBUG: Images loaded: {images.length} | In view: {isInView ? 'Yes' : 'No'}
+            <div className="bg-red-500 text-white p-4 text-sm mb-4 border-2 border-yellow-400">
+              <strong>MOBILE DEBUG:</strong><br/>
+              Images loaded: {images.length}<br/>
+              In view: {isInView ? 'Yes' : 'No'}<br/>
+              Component rendered: YES<br/>
+              {images.length > 0 && <span>✅ Images found</span>}
+              {images.length === 0 && <span>❌ No images loaded</span>}
             </div>
             <p className="sophisticated-text text-lg max-w-2xl mx-auto">
               Discover our culinary masterpieces, each dish crafted with passion 
