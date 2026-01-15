@@ -11,13 +11,13 @@
     scroll-behavior: smooth;
     font-size: 16px;
   }
-  
+
   body {
     @apply font-sans text-warm-white bg-charcoal elegant-spacing;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
   }
-  
+
   .font-serif {
     font-family: 'Playfair Display', Georgia, serif;
   }
@@ -45,6 +45,7 @@
 }
 
 @layer components {
+
   /* Core sophisticated design elements */
   .elegant-spacing {
     letter-spacing: 0.015em;
@@ -52,7 +53,7 @@
   }
 
   .sophisticated-glow {
-    text-shadow: 
+    text-shadow:
       0 0 30px rgba(201, 169, 97, 0.6),
       0 0 60px rgba(201, 169, 97, 0.3),
       0 0 90px rgba(201, 169, 97, 0.1);
@@ -66,17 +67,17 @@
   }
 
   .elegant-overlay {
-    background: linear-gradient(135deg, 
-      rgba(13, 13, 13, 0.95) 0%, 
-      rgba(26, 26, 26, 0.9) 50%, 
-      rgba(42, 42, 42, 0.85) 100%);
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.9) 50%,
+        rgba(0, 0, 0, 0.95) 100%);
   }
 
   .video-overlay {
-    background: linear-gradient(135deg, 
-      rgba(13, 13, 13, 0.7) 0%, 
-      rgba(26, 26, 26, 0.5) 50%, 
-      rgba(13, 13, 13, 0.8) 100%);
+    background: linear-gradient(135deg,
+        rgba(13, 13, 13, 0.7) 0%,
+        rgba(26, 26, 26, 0.5) 50%,
+        rgba(13, 13, 13, 0.8) 100%);
   }
 
   .sophisticated-border {
@@ -118,7 +119,43 @@
     transform-style: preserve-3d;
   }
 
-  /* Sophisticated buttons */
+  /* Galvin-Style Ghost Button - Primary */
+  .galvin-btn {
+    @apply bg-transparent text-warm-white font-medium px-10 py-4 rounded-none;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 400;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .galvin-btn:hover {
+    background: rgba(197, 160, 89, 0.1);
+    border-color: #C5A059;
+    color: #C5A059;
+  }
+
+  /* Galvin-Style Ghost Button - Gold */
+  .galvin-btn-gold {
+    @apply bg-transparent font-medium px-10 py-4 rounded-none;
+    border: 1px solid #C5A059;
+    color: #C5A059;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 400;
+    transition: all 0.4s ease;
+  }
+
+  .galvin-btn-gold:hover {
+    background: #C5A059;
+    color: #0d0d0d;
+  }
+
+  /* Sophisticated buttons - Updated */
   .sophisticated-btn-primary {
     @apply bg-gold text-charcoal font-medium px-12 py-4 rounded-none border border-gold;
     @apply hover:bg-charcoal hover:text-gold hover:shadow-2xl;
@@ -139,7 +176,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transition: left 0.5s;
   }
 
@@ -173,6 +210,79 @@
 
   .sophisticated-btn-secondary:hover::before {
     left: 100%;
+  }
+
+  /* Galvin-Style Cards */
+  .galvin-card {
+    @apply relative overflow-hidden;
+    transition: all 0.5s ease;
+  }
+
+  .galvin-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+
+  .galvin-card:hover::before {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .galvin-card-content {
+    @apply absolute bottom-0 left-0 right-0 p-8 z-10;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+  }
+
+  /* Scroll Fade-In Animation */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Ken Burns Effect */
+  .ken-burns {
+    animation: kenBurns 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+
+    100% {
+      transform: scale(1.1) translate(-2%, -2%);
+    }
+  }
+
+  @keyframes kenBurnsZoom {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.08);
+    }
+  }
+
+  /* Galvin Testimonial Quote */
+  .galvin-quote {
+    @apply relative;
+  }
+
+  .galvin-quote::before {
+    content: '"';
+    @apply absolute -left-8 -top-4 text-6xl text-gold opacity-50;
+    font-family: 'Playfair Display', serif;
   }
 
   /* Card and container styles */
@@ -354,26 +464,26 @@
   .perspective-1000 {
     perspective: 1000px;
   }
-  
+
   .transform-style-3d {
     transform-style: preserve-3d;
   }
-  
+
   .backface-hidden {
     backface-visibility: hidden;
   }
-  
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .cursor-zoom-in {
     cursor: zoom-in;
   }
-  
+
   .cursor-zoom-out {
     cursor: zoom-out;
   }
@@ -390,6 +500,7 @@
     transform: translateY(30px);
     filter: blur(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -398,11 +509,14 @@
 }
 
 @keyframes ultraGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
   }
+
   50% {
-    text-shadow: 
+    text-shadow:
       0 0 30px rgba(201, 169, 97, 0.8),
       0 0 60px rgba(201, 169, 97, 0.4),
       0 0 90px rgba(201, 169, 97, 0.2);
@@ -410,10 +524,13 @@
 }
 
 @keyframes luxuryPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
   }
+
   50% {
     transform: scale(1.02);
     box-shadow: 0 0 40px rgba(201, 169, 97, 0.6);
@@ -421,15 +538,20 @@
 }
 
 @keyframes premiumFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   25% {
     transform: translateY(-5px) rotate(1deg);
   }
+
   50% {
     transform: translateY(-10px) rotate(0deg);
   }
+
   75% {
     transform: translateY(-5px) rotate(-1deg);
   }
@@ -439,6 +561,7 @@
   from {
     transform: rotate(0deg) scale(1);
   }
+
   to {
     transform: rotate(360deg) scale(1.1);
   }
@@ -448,27 +571,35 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
 
 @keyframes buttonGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.5);
   }
@@ -478,6 +609,7 @@
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(100px, 100px);
   }
@@ -487,16 +619,20 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -504,17 +640,22 @@
 }
 
 @keyframes ping {
-  75%, 100% {
+
+  75%,
+  100% {
     transform: scale(2);
     opacity: 0;
   }
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -527,6 +668,7 @@
     transform: translateY(50px);
     filter: blur(3px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -538,15 +680,19 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 @keyframes gentleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -559,6 +705,7 @@
     transform: translateY(30px);
     filter: blur(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -572,6 +719,7 @@
     transform: translateY(50px);
     filter: blur(3px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

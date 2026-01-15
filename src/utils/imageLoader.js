@@ -9,7 +9,6 @@ export const loadImagesByPrefix = (prefix) => {
       { filename: 'ambience03.jpg', title: 'Royal Bar Area', description: 'Sophisticated bar featuring premium spirits and handcrafted cocktails' },
       { filename: 'ambience04.jpg', title: 'Garden Terrace', description: 'Open-air dining experience under the stars with Indian garden aesthetics' },
       { filename: 'ambience05.jpg', title: 'Royal Suite', description: 'Exclusive dining experience fit for royalty with ornate decorations' },
-      { filename: 'ambience06.jpg', title: 'Chef\'s Table', description: 'Watch our master chefs create culinary art in our open kitchen' },
       { filename: 'ambience07.jpg', title: 'Wine Cellar', description: 'Curated selection of fine wines in our temperature-controlled cellar' }
     ],
     food: [
@@ -24,21 +23,21 @@ export const loadImagesByPrefix = (prefix) => {
     menu: [
       { filename: 'menu front page 1.png', title: '', description: '' },
       { filename: 'menu 2nd page 2.png', title: '', description: '' },
-      { filename: 'soups 3.png', title: 'soups', description: '' },
-      { filename: 'appetisers 4.png', title: 'appetisers', description: '' },
-      { filename: 'kebabs and grills 5.png', title: 'kebabs and grills', description: '' },
-      { filename: 'main course 6.png', title: 'main course', description: '' },
-      { filename: 'main course 7.png', title: 'main course', description: '' },
-      { filename: 'biryani and pulaos 8.png', title: 'biryani and pulaos', description: '' },
-      { filename: 'asli signatures 9.png', title: 'asli signatures', description: '' },
-      { filename: 'breads and dosas 10.png', title: 'breads and dosas', description: '' },
-      { filename: 'rice and desserts 11.png', title: 'rice and desserts', description: '' },
-      { filename: 'beverages 12.png', title: 'beverages', description: '' }
+      { filename: 'soups 3.png', title: 'Soups', description: '' },
+      { filename: 'appetisers 4.png', title: 'Appetisers', description: '' },
+      { filename: 'kebabs and grills 5.png', title: 'Kebabs and Grills', description: '' },
+      { filename: 'main course 6.png', title: 'Main Course', description: '' },
+      { filename: 'main course 7.png', title: 'Main Course', description: '' },
+      { filename: 'biryani and pulaos 8.png', title: 'Biryani and Pulaos', description: '' },
+      { filename: 'asli signatures 9.png', title: 'Asli Signatures', description: '' },
+      { filename: 'breads and dosas 10.png', title: 'Breads and Dosas', description: '' },
+      { filename: 'rice and desserts 11.png', title: 'Rice and Desserts', description: '' },
+      { filename: 'beverages 12.png', title: 'Beverages', description: '' }
     ]
   };
 
   const images = imageDatabase[prefix] || [];
-  
+
   return images.map((image, index) => ({
     ...image,
     src: `/images/${image.filename}`,
@@ -48,7 +47,7 @@ export const loadImagesByPrefix = (prefix) => {
 
 // Function to create fallback SVG for missing images
 export const createFallbackSVG = (title, width = 400, height = 300) => {
-  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'%3E%3Crect width='${width}' height='${height}' fill='%23FAF4EC'/%3E%3Ctext x='${width/2}' y='${height/2}' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' dominant-baseline='middle'%3E${encodeURIComponent(title)}%3C/text%3E%3C/svg%3E`;
+  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'%3E%3Crect width='${width}' height='${height}' fill='%23FAF4EC'/%3E%3Ctext x='${width / 2}' y='${height / 2}' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' dominant-baseline='middle'%3E${encodeURIComponent(title)}%3C/text%3E%3C/svg%3E`;
 };
 
 // Function to preload images

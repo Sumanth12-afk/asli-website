@@ -1,0 +1,268 @@
+/* StaggeredMenu.css */
+
+.staggered-menu-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+    pointer-events: none;
+}
+
+.staggered-menu-wrapper.fixed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    /* Higher than other content */
+}
+
+/* HEADER & LOGO */
+.staggered-menu-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    z-index: 50;
+    pointer-events: auto;
+}
+
+.sm-logo {
+    display: flex;
+    align-items: center;
+}
+
+.sm-logo-img {
+    max-width: 150px;
+    height: auto;
+}
+
+/* TOGGLE BUTTON */
+.sm-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #fff;
+    transition: color 0.3s ease;
+    font-family: inherit;
+    z-index: 52;
+}
+
+.sm-toggle-textWrap {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    height: 1.2em;
+    overflow: hidden;
+    display: block;
+}
+
+.sm-toggle-textInner {
+    display: flex;
+    flex-direction: column;
+}
+
+.sm-toggle-line {
+    line-height: 1.2em;
+}
+
+/* ICON */
+.sm-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sm-icon-line {
+    position: absolute;
+    background-color: currentColor;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+}
+
+.sm-icon-line-v {
+    width: 2px;
+    height: 100%;
+}
+
+/* PANELS & LAYERS */
+.staggered-menu-panel,
+.sm-prelayers,
+.sm-prelayer {
+    position: absolute;
+    top: 0;
+    padding-left: 10%;
+    height: 100%;
+    width: 100%;
+    /* Or adjust max-width */
+    max-width: 600px;
+    pointer-events: auto;
+}
+
+.staggered-menu-wrapper[data-position="right"] .staggered-menu-panel,
+.staggered-menu-wrapper[data-position="right"] .sm-prelayers {
+    right: 0;
+    left: auto;
+}
+
+.staggered-menu-wrapper[data-position="left"] .staggered-menu-panel,
+.staggered-menu-wrapper[data-position="left"] .sm-prelayers {
+    left: 0;
+    right: auto;
+}
+
+.staggered-menu-panel {
+    background-color: #1a1a1a;
+    color: #fff;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    overflow: hidden;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.sm-prelayer {
+    z-index: 45;
+    top: 0;
+    bottom: 0;
+}
+
+/* CONTENT */
+.sm-panel-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.sm-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sm-panel-itemWrap {
+    overflow: hidden;
+}
+
+.sm-panel-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1.1;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.sm-panel-item:hover {
+    color: var(--sm-accent, #B19EEF);
+}
+
+.sm-panel-itemLabel {
+    display: block;
+}
+
+/* Numbering */
+.sm-panel-list[data-numbering] .sm-panel-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::before {
+    content: "0" attr(data-index);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--sm-accent, #B19EEF);
+    opacity: var(--sm-num-opacity, 1);
+    transform: translateY(-50%);
+}
+
+/* SOCIALS */
+.sm-socials {
+    margin-top: 2rem;
+}
+
+.sm-socials-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+}
+
+.sm-socials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.sm-socials-item {
+    overflow: hidden;
+}
+
+.sm-socials-link {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.875rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.sm-socials-link:hover {
+    opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .staggered-menu-header {
+        padding: 1.5rem;
+    }
+
+    .staggered-menu-panel {
+        max-width: 100%;
+        padding: 2rem;
+    }
+
+    .sm-panel-item {
+        font-size: 2.5rem;
+    }
+
+    .sm-socials {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        left: auto;
+        margin-top: 0;
+        text-align: right;
+    }
+
+    .sm-socials-list {
+        justify-content: flex-end;
+    }
+}

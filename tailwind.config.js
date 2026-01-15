@@ -7,22 +7,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Sophisticated Margot-Inspired Palette
-        'charcoal': '#1a1a1a',
-        'charcoal-light': '#2a2a2a',
-        'charcoal-lighter': '#333333',
-        'gold': '#c9a961',
-        'gold-light': '#FFD700',
-        'gold-bright': '#FFF700',
-        'gold-dark': '#b8995a',
-        'cream': '#f5f3f0',
-        'cream-dark': '#e8e4de',
-        'warm-white': '#fafaf9',
+        // Galvin-Inspired Premium Palette - Pure Dark Mode
+        'charcoal': '#000000',
+        'charcoal-light': '#0a0a0a',
+        'charcoal-lighter': '#141414',
+        'gold': '#C5A059',
+        'gold-light': '#D4B574',
+        'gold-bright': '#E5C884',
+        'gold-dark': '#B8955A',
+        'cream': '#F5F0E8',
+        'cream-dark': '#EDE7DC',
+        'linen': '#FAF8F5',
+        'warm-white': '#FEFEFE',
         'warm-gray': '#4a4a4a',
         'warm-gray-light': '#666666',
-        'soft-black': '#0d0d0d',
-        'elegant-beige': '#f0ede8',
-        
+        'soft-black': '#000000',
+        'elegant-beige': '#F0EDE8',
+
         // Legacy colors for backward compatibility
         'clay-red': '#933f2f',
         'muted-ivory': '#f9f3ea',

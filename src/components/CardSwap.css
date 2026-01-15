@@ -1,0 +1,98 @@
+.card-swap-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(5%, 20%);
+    transform-origin: bottom right;
+    perspective: 900px;
+    overflow: visible;
+}
+
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 12px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    background: #0a0a0a;
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+}
+
+.card-description {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* Mobile & Tablet - Center cards */
+@media (max-width: 1023px) {
+    .card-swap-container {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        top: auto !important;
+        transform: none !important;
+        transform-origin: center center;
+        margin: 0 auto;
+    }
+
+    .card {
+        top: 85% !important;
+        left: 45% !important;
+    }
+
+    .card-content {
+        padding: 0.75rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-description {
+        font-size: 0.6875rem;
+    }
+}
