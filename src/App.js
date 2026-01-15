@@ -13,27 +13,7 @@ import { loadImagesByPrefix, preloadImage } from './utils/imageLoader';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState('home');
 
-  useEffect(() => {
-    // Determine active section for scroll
-    // Updated order: home -> about -> food -> ambience -> menu -> reservations -> contact
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'ambience', 'menu', 'reservations', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
-          setActiveSection(section);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     // Preload critical images
