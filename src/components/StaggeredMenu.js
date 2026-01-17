@@ -348,7 +348,7 @@ export const StaggeredMenu = ({
 
     return (
         <div
-            className={(className ? className + ' ' : '') + 'staggered-menu-wrapper' + (isFixed ? ' fixed-wrapper' : '')}
+            className={(className ? className + ' ' : '') + 'staggered-menu-wrapper' + (isFixed ? ' fixed-wrapper' : '') + (open ? ' menu-open' : '')}
             style={accentColor ? { '--sm-accent': accentColor } : undefined}
             data-position={position}
             data-open={open || undefined}

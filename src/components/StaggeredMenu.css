@@ -110,6 +110,13 @@
     width: 100%;
     /* Or adjust max-width */
     max-width: 600px;
+    pointer-events: none;
+}
+
+/* Enable pointer events only when menu is open */
+.staggered-menu-wrapper.menu-open .staggered-menu-panel,
+.staggered-menu-wrapper.menu-open .sm-prelayers,
+.staggered-menu-wrapper.menu-open .sm-prelayer {
     pointer-events: auto;
 }
 

@@ -55,7 +55,7 @@ const MenuSection = () => {
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); prevSlide(); }}
                 className="flex-shrink-0 w-12 h-12 border border-gold/50 text-gold 
                            hover:bg-gold hover:text-charcoal flex items-center justify-center 
-                           transition-all duration-300 rounded-full cursor-pointer z-10"
+                           transition-all duration-300 rounded-full cursor-pointer z-50 relative"
                 aria-label="Previous menu page"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ const MenuSection = () => {
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); nextSlide(); }}
                 className="flex-shrink-0 w-12 h-12 border border-gold/50 text-gold 
                            hover:bg-gold hover:text-charcoal flex items-center justify-center 
-                           transition-all duration-300 rounded-full cursor-pointer z-10"
+                           transition-all duration-300 rounded-full cursor-pointer z-50 relative"
                 aria-label="Next menu page"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
