@@ -52,10 +52,10 @@ const MenuSection = () => {
               {/* Left Arrow */}
               <button
                 type="button"
-                onClick={(e) => { e.preventDefault(); prevSlide(); }}
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); prevSlide(); }}
                 className="flex-shrink-0 w-12 h-12 border border-gold/50 text-gold 
                            hover:bg-gold hover:text-charcoal flex items-center justify-center 
-                           transition-all duration-300 rounded-full cursor-pointer"
+                           transition-all duration-300 rounded-full cursor-pointer z-10"
                 aria-label="Previous menu page"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,8 +69,8 @@ const MenuSection = () => {
                   <div
                     key={index}
                     className={`absolute inset-0 transition-all duration-500 ease-out ${index === currentSlide
-                        ? 'opacity-100 scale-100'
-                        : 'opacity-0 scale-95 pointer-events-none'
+                      ? 'opacity-100 scale-100'
+                      : 'opacity-0 scale-95 pointer-events-none'
                       }`}
                   >
                     <img
@@ -92,10 +92,10 @@ const MenuSection = () => {
               {/* Right Arrow */}
               <button
                 type="button"
-                onClick={(e) => { e.preventDefault(); nextSlide(); }}
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); nextSlide(); }}
                 className="flex-shrink-0 w-12 h-12 border border-gold/50 text-gold 
                            hover:bg-gold hover:text-charcoal flex items-center justify-center 
-                           transition-all duration-300 rounded-full cursor-pointer"
+                           transition-all duration-300 rounded-full cursor-pointer z-10"
                 aria-label="Next menu page"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,8 +112,8 @@ const MenuSection = () => {
                   type="button"
                   onClick={() => goToSlide(index)}
                   className={`transition-all duration-300 h-1 rounded-full cursor-pointer ${index === currentSlide
-                      ? 'w-8 bg-gold'
-                      : 'w-4 bg-white/30 hover:bg-white/50'
+                    ? 'w-8 bg-gold'
+                    : 'w-4 bg-white/30 hover:bg-white/50'
                     }`}
                   aria-label={`Go to menu page ${index + 1}`}
                 />
