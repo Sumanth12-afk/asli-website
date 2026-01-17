@@ -9,24 +9,40 @@ import CocktailShowcaseSection from './components/CocktailShowcaseSection';
 import ContactSection from './components/ContactSection';
 import ReservationSection from './components/ReservationSection';
 import SignatureDishesSection from './components/SignatureDishesSection';
-import { loadImagesByPrefix, preloadImage } from './utils/imageLoader';
+import { preloadImage } from './utils/imageLoader';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
-    // Preload critical images
+    // Preload critical images including hero images
     const loadAssets = async () => {
       try {
-        const heroImages = loadImagesByPrefix('ambience');
-        await Promise.all(heroImages.slice(0, 3).map(img => preloadImage(img.src)));
+        // Hero images to preload
+        const heroImagePaths = [
+          '/images/hero1.png',
+          '/images/hero2.png',
+          '/images/hero3.png'
+        ];
 
-        // Minimum loading time for animation
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Start loading all hero images in parallel
+        const heroImagePromises = heroImagePaths.map(src => preloadImage(src));
+
+        // Minimum loading time for smooth animation (4 seconds)
+        const minLoadingTime = new Promise(resolve => setTimeout(resolve, 4000));
+
+        // Wait for BOTH: all images loaded AND minimum time passed
+        await Promise.all([
+          Promise.all(heroImagePromises),
+          minLoadingTime
+        ]);
+
         setIsLoading(false);
       } catch (error) {
         console.error('Failed to load assets:', error);
+        // Still hide loading after minimum time even if images fail
+        await new Promise(resolve => setTimeout(resolve, 4000));
         setIsLoading(false);
       }
     };
@@ -47,15 +63,28 @@ function App() {
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-charcoal z-50 flex flex-col items-center justify-center">
-        <div className="relative w-24 h-24 mb-8">
+        {/* Elegant spinner */}
+        <div className="relative w-20 h-20 mb-10">
           <div className="absolute inset-0 border-t-2 border-gold rounded-full animate-spin"></div>
-          <div className="absolute inset-2 border-r-2 border-warm-white rounded-full animate-spin-reverse"></div>
+          <div className="absolute inset-2 border-r-2 border-warm-white/30 rounded-full animate-spin-reverse"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-gold font-serif text-2xl animate-pulse">A</span>
+            <span className="text-gold font-serif text-3xl">A</span>
           </div>
         </div>
-        <div className="tracking-[0.5em] text-xs text-gold uppercase animate-pulse">
-          ASLI • Authenticity
+
+        {/* Welcome Message - Option 7 */}
+        <h1 className="font-serif text-3xl md:text-4xl text-warm-white mb-3 tracking-wide">
+          Welcome to Asli
+        </h1>
+        <p className="text-gold text-sm md:text-base uppercase tracking-[0.3em] font-light">
+          A Taste of Tradition
+        </p>
+
+        {/* Subtle decorative line */}
+        <div className="flex items-center gap-3 mt-8">
+          <div className="w-8 h-px bg-gold/40"></div>
+          <div className="w-1.5 h-1.5 bg-gold rotate-45"></div>
+          <div className="w-8 h-px bg-gold/40"></div>
         </div>
       </div>
     );
